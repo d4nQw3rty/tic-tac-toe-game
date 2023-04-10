@@ -1,0 +1,23 @@
+{
+  "name": "tic-tac-toe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d4nQw3rty/tic-tac-toe-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/d4nQw3rty/tic-tac-toe-game/issues"
+  },
+  "homepage": "https://github.com/d4nQw3rty/tic-tac-toe-game#readme",
+  "devDependencies": {
+    "hint": "^7.1.8"
+  }
+}
