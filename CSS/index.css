@@ -8,7 +8,7 @@
   --light-gray: #d3d3d3;
 }
 
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -19,5 +19,31 @@
 
 .grid {
   display: grid;
+  grid-template-columns: repeat(3, 80px);
+  grid-template-rows: 50px repeat(3, 80px) 60px;
+  gap: 5px;
+}
 
+.turn {
+  background-color: green;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.square {
+  background-color: red;
+}
+
+.score {
+  background-color: blue;
+}
+
+.actions {
+  background-color: yellow;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: var(--dark-gray);
 }
