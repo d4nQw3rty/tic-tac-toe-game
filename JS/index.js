@@ -6,8 +6,13 @@ const App = {
     newRoundBtn: document.querySelector('[data-id="new-round-btn"]'),
     squares: document.querySelectorAll('[data-id="square"]')
   },
-  init(){
-        
+
+  init(){  
+    App.registerEventsListeners();
+  },
+
+  registerEventsListeners() {
+
     App.$.menu.addEventListener('click', (event) => {
       App.$.menuItems.classList.toggle('hidden');
     });
@@ -25,6 +30,7 @@ const App = {
            console.log(`Square with id: ${event.target.id} was clicked`)
         })
     })
+
   }
 }
 
