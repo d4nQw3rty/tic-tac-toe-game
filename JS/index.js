@@ -7,6 +7,10 @@ const App = {
     squares: document.querySelectorAll('[data-id="square"]')
   },
 
+  state:{
+    
+  },
+
   init(){  
     App.registerEventsListeners();
   },
