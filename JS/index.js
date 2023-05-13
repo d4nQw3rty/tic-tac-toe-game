@@ -8,7 +8,7 @@ const App = {
   },
 
   state:{  
-    moves: []
+    moves: [],
   },
 
   init(){  
@@ -34,18 +34,25 @@ const App = {
 
           const hasMoves = (squareId) => {
 
-            const existingMove = App.state.
-          }
+            const existingMove = App.state.moves.find(
+              (move) => move.squareId === squareId
+            );
+            return existingMove !== undefined;
+          };
 
-           if(square.hasChildNodes()){
+           if(hasMoves(+square.id)){
             return;
            }
 
            const lastMove = App.state.moves.at(-1);
-           const getOppositePlayer = ( playerId ) => playerId === 1 ? 2 : 1;
-           const currentPlayer = App.state.moves.length === 0 
-           ? 1
-           : getOppositePlayer( lastMove.playerId );
+
+           const getOppositePlayer = (playerId) => (playerId === 1 ? 2 : 1)
+
+           const currentPlayer = 
+           App.state.moves.length === 0
+             ? 1
+
+             : getOppositePlayer( lastMove.playerId );
 
            const icon = document.createElement('i');
    
@@ -57,8 +64,8 @@ const App = {
            }
 
            App.state.moves.push({
-            squareId: +square,
-            playerId: currentPlayer
+            squareId: +square.id,
+            playerId: currentPlayer,
            })
    
            App.state.currentPlayer = currentPlayer === 1 ? 2 : 1;
