@@ -66,11 +66,7 @@ const App = {
            App.state.moves.push({
             squareId: +square.id,
             playerId: currentPlayer,
-           })
-   
-           App.state.currentPlayer = currentPlayer === 1 ? 2 : 1;
-
-           console.log(App.state)
+           })          
 
            square.replaceChildren(icon);
            
