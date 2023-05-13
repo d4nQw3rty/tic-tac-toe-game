@@ -11,6 +11,36 @@ const App = {
     moves: [],
   },
 
+  getGameStatus(moves) {
+    const p1Moves = moves.filter(move => move.playerId === 1);
+    const p2Moves = moves.filter(move => move.playerId === 2);
+
+    const winningPatterns = [
+      [1, 2, 3],
+      [1, 5, 9],
+      [1, 4, 7],
+      [2, 5, 8],
+      [3, 5, 7],
+      [3, 6, 9],
+      [4, 5, 6],
+      [7, 8, 9],
+    ];
+
+    let winner = null;
+    winningPatterns.forEach(pattern => {
+      const p1win = pattern.every(v => p1Moves.includes(v));
+      const p2win = pattern.every(v => p2Moves.includes(v));
+
+      if (p1win) winner = 1;
+      if (p2win) winner = 2;
+    })
+    
+    return {
+      status: moves.length === 9 || winner != null ? 'complete' : 'in-progress' , // in-progress || complete
+      winner // 1 || 2 || null
+    }
+  },
+
   init(){  
     App.registerEventsListeners();
   },
@@ -69,17 +99,12 @@ const App = {
            })          
 
            square.replaceChildren(icon);
+
+           const status = App.getGameStatus(App.state.moves);
+
+           console.log(status);
            
-           const winningPatterns = [
-            [1, 2, 3],
-            [1, 5, 9],
-            [1, 4, 7],
-            [2, 5, 8],
-            [3, 5, 7],
-            [3, 6, 9],
-            [4, 5, 6],
-            [7, 8, 9],
-          ];
+
         });
     });
   }
