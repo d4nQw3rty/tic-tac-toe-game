@@ -5,6 +5,9 @@ const App = {
     resetBtn: document.querySelector('[data-id="reset-btn"]'),
     newRoundBtn: document.querySelector('[data-id="new-round-btn"]'),
     squares: document.querySelectorAll('[data-id="square"]'),
+    modal: document.querySelectorAll('[data-id="modal"]'),
+    modalText: document.querySelectorAll('[data-id="modal-text"]'),
+    modalBtn: document.querySelectorAll('[data-id="modal-btn"]'),
   },
 
   state: {
