@@ -5,9 +5,10 @@ const App = {
     resetBtn: document.querySelector('[data-id="reset-btn"]'),
     newRoundBtn: document.querySelector('[data-id="new-round-btn"]'),
     squares: document.querySelectorAll('[data-id="square"]'),
-    modal: document.querySelectorAll('[data-id="modal"]'),
-    modalText: document.querySelectorAll('[data-id="modal-text"]'),
-    modalBtn: document.querySelectorAll('[data-id="modal-btn"]'),
+    modal: document.querySelector('[data-id="modal"]'),
+    modalText: document.querySelector('[data-id="modal-text"]'),
+    modalBtn: document.querySelector('[data-id="modal-btn"]'),
+    turn: document.querySelector('[data-id="turn"]')
   },
 
   state: {
@@ -65,6 +66,12 @@ const App = {
       console.log("new game");
     });
 
+    App.$.modalBtn.addEventListener("click", (event) => {
+      App.state.moves = [];
+      App.$.squares.forEach((square) => square.replaceChildren())
+      App.$.modal.classList.add('hidden');
+    });
+
     App.$.squares.forEach((square) => {
       square.addEventListener("click", (event) => {
         const hasMoves = (squareId) => {
@@ -87,30 +94,52 @@ const App = {
             ? 1
             : getOppositePlayer(lastMove.playerId);
 
-        const icon = document.createElement("i");
+        const nextPlayer = getOppositePlayer(currentPlayer);
+
+        const squareIcon = document.createElement("i");
+        const turnIcon = document.createElement("i");
+        const turnLabel = document.createElement('p');
+        turnLabel.innerText = `Player ${nextPlayer}, you are up!`
 
         if (currentPlayer === 1) {
-          icon.classList.add("fa-solid", "fa-x", "turquoise");
+          squareIcon.classList.add("fa-solid", "fa-x", "yellow");
+          turnIcon.classList.add("fa-solid", "fa-o", "turquoise");
+          turnLabel.classList = 'turquoise';
+
         } else {
-          icon.classList.add("fa-solid", "fa-o", "yellow");
+          squareIcon.classList.add("fa-solid", "fa-o", "turquoise");
+          turnIcon.classList.add("fa-solid", "fa-x", "yellow");
+          turnLabel.classList = 'yellow';
         }
+
+        App.$.turn.replaceChildren(turnIcon, turnLabel)
 
         App.state.moves.push({
           squareId: +square.id,
           playerId: currentPlayer,
         });
 
-        square.replaceChildren(icon);
+        square.replaceChildren(squareIcon);
 
         const game = App.getGameStatus(App.state.moves);
 
         if(game.status === 'complete'){
+
+          let message='';
+
+          App.$.modal.classList.remove('hidden')
+
           if(game.winner){
-           alert(`Player ${game.winner} wins!`)
+
+            message = `Player ${game.winner} wins!`;
+
           }else {
-            alert('Tie')
+
+            message = 'Tie Game!';
+
           }
-        }
+          App.$.modalText.textContent= message
+        }          
       });
     });
   },
