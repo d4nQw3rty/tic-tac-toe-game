@@ -1,3 +1,5 @@
+import View from './view.js'
+
 const App = {
   $: {
     menu: document.querySelector('[data-id="menu"]'),
@@ -146,3 +148,10 @@ const App = {
 };
 
 window.addEventListener("load", App.init);
+
+function init() {
+  const view = new View();
+  console.log(view.$.turn);
+}
+
+window.addEventListener("load", init);
