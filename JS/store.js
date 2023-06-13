@@ -1,6 +1,14 @@
+const initialValue = {
+  moves: [],
+};
+
 export default class Store {
-  #state = { moves: [] };
+  #state = initialValue;
   constructor() {}
+
+  get game() {
+    return "dummy, value.";
+  }
 
   #getState() {
     return this.#state;

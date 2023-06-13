@@ -1,3 +1,4 @@
+import Store from './store.js';
 import View from './view.js'
 
 const App = {
@@ -147,8 +148,26 @@ const App = {
   },
 };
 
+const players = [
+  {
+    id: 1,
+    name: "Player 1",
+    iconClass: "fa-x",
+    colorClass: 'turquoise',
+  },
+  {
+    id: 2,
+    name: "Player 2",
+    iconClass: "fa-o",
+    colorClass: 'yellow',
+  },
+]
+
 function init() {
   const view = new View();
+  const store = new Store();
+
+  console.log(store.game)
 
   view.bindGameResetEvent((event) => {
     console.log('Reset Event!');
@@ -159,8 +178,8 @@ function init() {
     console.log(event);
   })
   view.binPlayerMoveEvent((event) => {
-    view.setTurnIndicator(2);
-    view.handlePlayerMove(event.target,1)
+    view.setTurnIndicator(players[1]);
+    view.handlePlayerMove(event.target, players[1])
   })
 }
 

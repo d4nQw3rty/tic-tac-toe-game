@@ -49,8 +49,8 @@ export default class View {
     const icon = document.createElement("i");
     icon.classList.add(
       "fa-solid",
-      player === 1 ? "fa-x" : "fa-o",
-      player === 1 ? "yellow" : "turquoise"
+      player.iconClass,
+      player.colorClass,
     );
     squareElement.replaceChildren(icon);
   }
@@ -59,13 +59,16 @@ export default class View {
   setTurnIndicator(player) {
     const icon = document.createElement("i");
     const label = document.createElement("p");
-    this.$.turn.classList.add(player === 1 ? "yellow" : "turquoise");
-    this.$.turn.classList.remove(player === 1 ? "turquoise" : "yellow");
-    icon.classList.add("fa-solid", player === 1 ? "fa-x" : "fa-o");
-    label.innerText =
-      player === 1 ? "Player 1, you're up!" : "Player 2, you're up!";
+    
+    icon.classList.add("fa-solid", player.colorClass, player.iconClass);
+
+    label.classList.add(player.colorClass)
+    label.innerText = `${player.name}, you're up!`;
+
     this.$.turn.replaceChildren(icon, label);
-  }
+
+    }
+
 
   #qs(selector, parent) {
     const element = parent
