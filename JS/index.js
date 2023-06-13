@@ -160,6 +160,7 @@ function init() {
   })
   view.binPlayerMoveEvent((event) => {
     view.setTurnIndicator(2);
+    view.handlePlayerMove(event.target,1)
   })
 }
 
